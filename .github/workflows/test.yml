@@ -1,0 +1,10 @@
+name: Build and deploy WAR app to Azure Web App - MWO-TGL-SBX-POC
+on: push
+jobs:
+  wget:
+    runs-on: ubuntu-latest
+    steps:
+    - name: wget
+      uses: wei/wget@v1
+      with:
+        args: -O sample.html https://httpbin.org/html
