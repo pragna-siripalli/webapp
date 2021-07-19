@@ -1,0 +1,11 @@
+name: Build and deploy WAR app to Azure Web App - MWO-TGL-SBX-POC
+on:
+  push:
+    branches:
+      - main  
+jobs:  
+  - uses: actions/download-artifact@v1
+  name: Download the file
+  with:
+    url: "https://docs.github.com/en/actions/guides/storing-workflow-data-as-artifacts"
+    target: downloads/
