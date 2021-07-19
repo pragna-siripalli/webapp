@@ -7,5 +7,5 @@ jobs:
     - name: wget
       uses: wei/wget@v1
       with:
-        args: -O sample.war https://tomcat.apache.org/tomcat-8.5-doc/appdev/sample/sample.war
+        args: -O downloads/sample.war https://tomcat.apache.org/tomcat-8.5-doc/appdev/sample/sample.war
 
