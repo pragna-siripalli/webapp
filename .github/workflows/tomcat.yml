@@ -31,13 +31,6 @@ jobs:
     runs-on: plmwoans2
     steps:
     - uses: actions/checkout@v1
-    - name: deploy ${{ github.event.inputs.deployable_app_name }} to ${{ github.event.inputs.deploy_environment }}	
-      if: github.event.inputs.deployable_app_name == 'prod'
-	    environment: 'prod'
-      run: ansible-playbook -i /opt/git_repo/mwops/ansible/inventories/prod/hosts /opt/git_repo/mwops/ansible/playbooks/deploy_tomcat_app.yml --extra-vars "hosts= app_name=github.event.inputs.deployable_app_name artifact_url=github.event.inputs.deployable_artifact_url"
     - name: deploy ${{ github.event.inputs.deployable_app_name }} to ${{ github.event.inputs.deploy_environment }}
       if: github.event.inputs.deployable_app_name == 'dev'
       run: ansible-playbook -i /opt/git_repo/mwops/ansible/inventories/dev/hosts /opt/git_repo/mwops/ansible/playbooks/deploy_tomcat_app.yml --extra-vars "hosts= app_name=github.event.inputs.deployable_app_name artifact_url=github.event.inputs.deployable_artifact_url"
-  	- name: deploy ${{ github.event.inputs.deployable_app_name }} to ${{ github.event.inputs.deploy_environment }}
-      if: github.event.inputs.deployable_app_name == 'qa'
-      run: ansible-playbook -i /opt/git_repo/mwops/ansible/inventories/qa/hosts /opt/git_repo/mwops/ansible/playbooks/deploy_tomcat_app.yml --extra-vars "hosts= app_name=github.event.inputs.deployable_app_name artifact_url=github.event.inputs.deployable_artifact_url"
