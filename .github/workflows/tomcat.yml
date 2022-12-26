@@ -33,4 +33,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: deploy ${{ github.event.inputs.deployable_app_name }} to ${{ github.event.inputs.deploy_environment }}
       if: github.event.inputs.deployable_app_name == 'dev'
-      run: ansible-playbook -i /opt/git_repo/mwops/ansible/inventories/dev/hosts /opt/git_repo/mwops/ansible/playbooks/deploy_tomcat_app.yml --extra-vars "hosts= app_name=github.event.inputs.deployable_app_name artifact_url=github.event.inputs.deployable_artifact_url"
+      env: 
+        applicant-center: tomcat8-crops-application
+      run: ansible-playbook -i /opt/git_repo/mwops/ansible/inventories/dev/hosts /opt/git_repo/mwops/ansible/playbooks/deploy_tomcat_app.yml --extra-vars "hosts=$github.event.inputs.deployable_app_name app_name=github.event.inputs.deployable_app_name artifact_url=github.event.inputs.deployable_artifact_url"
